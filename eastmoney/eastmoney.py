@@ -14,7 +14,7 @@ url='http://fund.eastmoney.com/allfund.html'
 
 
 def run_detail2(code,name,url):
-	soup=getstart.geturl_utf8(url)
+	soup=geturl.geturl_utf8(url)
 	tags=soup.find_all(class_='ui-font-middle ui-color-red ui-num')
 	m1=tags[3].string
 	y1=tags[4].string

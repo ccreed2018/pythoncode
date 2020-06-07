@@ -30,7 +30,7 @@ def run_detail2(code,name,url):
 
 def run_detail1(code,name,url):
 
-	soup=getstart.geturl_utf8(url)
+	soup=geturl.geturl_utf8(url)
 	tags=soup.select('dd')
 	try:
 		m1=(tags[1].find_all('span')[1].string)
@@ -46,7 +46,7 @@ def run_detail1(code,name,url):
 		run_detail2(code,name,url)
 
 
-soup=getstart.geturl_gbk(url)
+soup=geturl.geturl_gbk(url)
 tags=soup.select('.num_right > li')
 for tag in tags:
 	if tag.a is None:

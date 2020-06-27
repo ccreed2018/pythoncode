@@ -18,7 +18,7 @@ def get_fundcode():
     cont = re.findall('var r = (.*])', r.text)[0]  # 提取list
     ls = json.loads(cont)  # 将字符串个事的list转化为list格式
     fundcode = pd.DataFrame(ls, columns=['fundcode', 'fundsx', 'name', 'category', 'fundpy'])  # list转为DataFrame
-    fundcode = fundcode.loc[0:100, ['fundcode', 'name', 'category']]
+    fundcode = fundcode.loc[0:10, ['fundcode', 'name', 'category']]
     #fundcode.to_csv('./fundcode.csv', index=False, encoding = 'gbk')
     return fundcode
 
@@ -35,7 +35,10 @@ def get_fundjbgk():
         for row in table.findAll('tr'):
             for col in row.findAll('td'):
                 temp_jbgk.append(col.get_text())
-        fund_jbgk.append(temp_jbgk)
+        if len(temp_jbgk) >= 16:
+            fund_jbgk.append(temp_jbgk[0:16])
+        else:
+            print(temp_jbgk)
         time.sleep(random.randint(1, 3))
     df_jbgk = pd.DataFrame(fund_jbgk, columns=['基金全称', '基金简称', '基金代码', '基金类型', '发行日期', '成立日期/规模', '资产规模', '份额规模', '基金管理人', '基金托管人', '基金经理人', '成立来分红', '管理费率', '托管费率', '销售服务费率', '最高认购费率'])
     df_jbgk.to_csv('./fund_info.csv', index=False, encoding = 'gbk')

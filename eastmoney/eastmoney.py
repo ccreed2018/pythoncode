@@ -54,13 +54,13 @@ for tag in tags:
 	else:
 		content=tag.a.text
 		code=re.findall(r'\d+',content)[0]
-		#print(code)
+		print(code)
 		name=content.split('）')[1]
-		#print(name)
+		print(name)
 		url=tag.a['href']
-		#print(content)
+		print(content)
 		content_dict={'code':code,'name':name,'url':url}
-		#print (content_dict)
+		print (content_dict)
 		col1.insert(content_dict)
 		time.sleep(0.1)
 		run_detail1(code,name,url)
